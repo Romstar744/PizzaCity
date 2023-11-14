@@ -9,7 +9,20 @@ class PizzaPeter(
     override fun drinkSale() {
         println("Вы будете пить кофе?")
         println("1. Да\n2. Нет")
-        if (readln() == "1") println("С вас 200 рублей")
+        if (readln() == "1") {
+            println("С вас 200 рублей")
+            totalCoffeesSold++
+            totalCoffeeRevenue += 200.0
+
+            when {
+                neapolitanPizzaCount > 0 -> coffeeWithNeapolitanPizza++
+                romanPizzaCount > 0 -> coffeeWithRomanPizza++
+                sicilianPizzaCount > 0 -> coffeeWithSicilianPizza++
+                tyroleanPizzaCount > 0 -> coffeeWithTyroleanPizza++
+            }
+        } else {
+            totalCoffeeRefusals++
+        }
     }
 
     override fun romanPizzaSale() {
@@ -31,4 +44,5 @@ class PizzaPeter(
         neapolitanPizzaCount++
         println("Спасибо за покупку неаполитанской пиццы в Санкт-Петербурге")
     }
+    override fun offerSauce() {}
 }
